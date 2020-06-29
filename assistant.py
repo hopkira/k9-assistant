@@ -15,17 +15,11 @@ assistant = AssistantV2(
     authenticator=authenticator)
 assistant.set_service_url(assistant_service_URL)
 
-#########################
-# Sessions
-#########################
-
+# Create session
 session = assistant.create_session(assistant_id).get_result()
 print("Session established")
 
-#########################
-# Message
-#########################
-
+# Send text message
 message = assistant.message(
     assistant_id,
     session["session_id"],
