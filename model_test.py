@@ -1,5 +1,5 @@
 import picamera
-import numpy
+import numpy as np
 import io
 import time
 
