@@ -14,7 +14,9 @@ def main():
     with picamera.PiCamera() as camera:
         camera.resolution = (640, 480)
         camera.framerate = 30
-        _, height, width, _ = engine.get_input_tensor_shape()
+        # _, height, width, _ = engine.get_input_tensor_shape()
+        height = 224
+        width = 224
         camera.start_preview()
         try:
             stream = io.BytesIO()
