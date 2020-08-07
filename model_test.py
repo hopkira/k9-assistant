@@ -24,8 +24,8 @@ def main():
                 results = engine.classify_with_input_tensor(input_tensor, top_k=1)
                 elapsed_ms = time.time() - start_ms
                 if results:
-                camera.annotate_text = '%s %.2f\n%.2fms' % (
-                    labels[results[0][0]], results[0][1], elapsed_ms * 1000.0)
+                    camera.annotate_text = '%s %.2f\n%.2fms' % (
+                        labels[results[0][0]], results[0][1], elapsed_ms * 1000.0)
         finally:
         camera.stop_preview()
 
