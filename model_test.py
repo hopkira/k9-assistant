@@ -1,11 +1,14 @@
 import picamera
 import numpy
 import io
+import time
 
 from edgetpu.detection.engine import DetectionEngine
 from edgetpu.utils import dataset_utils
 
-engine = DetectionEngine('/home/pi/k9-assistant/model.tflite')
+# https://coral.ai/docs/reference/edgetpu.detection.engine/
+
+# engine = DetectionEngine('/home/pi/k9-assistant/model.tflite')
 
 def main():
     with picamera.PiCamera() as camera:
@@ -21,11 +24,12 @@ def main():
                 stream.seek(0)
                 input_tensor = np.frombuffer(stream.getvalue(), dtype=np.uint8)
                 start_ms = time.time()
-                results = engine.classify_with_input_tensor(input_tensor, top_k=1)
+                # results = engine.classify_with_input_tensor(input_tensor, top_k=1)
                 elapsed_ms = time.time() - start_ms
-                if results:
-                    camera.annotate_text = '%s %.2f\n%.2fms' % (
-                        labels[results[0][0]], results[0][1], elapsed_ms * 1000.0)
+                #if results:
+                #    camera.annotate_text = '%s %.2f\n%.2fms' % (
+                #        labels[results[0][0]], results[0][1], elapsed_ms * 1000.0)
+        '''
         finally:
             camera.stop_preview()
 
