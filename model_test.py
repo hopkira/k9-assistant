@@ -6,7 +6,7 @@ from edgetpu.utils import dataset_utils
 
 engine = DetectionEngine('/home/pi/k9-assistant/model.tflite')
 
-def main()
+def main():
     with picamera.PiCamera() as camera:
         camera.resolution = (640, 480)
         camera.framerate = 30
