@@ -29,7 +29,6 @@ def main():
                 #if results:
                 #    camera.annotate_text = '%s %.2f\n%.2fms' % (
                 #        labels[results[0][0]], results[0][1], elapsed_ms * 1000.0)
-        '''
         finally:
             camera.stop_preview()
 
