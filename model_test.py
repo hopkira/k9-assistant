@@ -1,5 +1,6 @@
 import picamera
 import numpy
+import io
 
 from edgetpu.detection.engine import DetectionEngine
 from edgetpu.utils import dataset_utils
@@ -13,18 +14,18 @@ def main():
         _, height, width, _ = engine.get_input_tensor_shape()
         camera.start_preview()
         try:
-        stream = io.BytesIO()
-        for _ in camera.capture_continuous(
-            stream, format='rgb', use_video_port=True, resize=(width, height)):
-            stream.truncate()
-            stream.seek(0)
-            input_tensor = np.frombuffer(stream.getvalue(), dtype=np.uint8)
-            start_ms = time.time()
-            results = engine.classify_with_input_tensor(input_tensor, top_k=1)
-            elapsed_ms = time.time() - start_ms
-            if results:
-            camera.annotate_text = '%s %.2f\n%.2fms' % (
-                labels[results[0][0]], results[0][1], elapsed_ms * 1000.0)
+            stream = io.BytesIO()
+            for _ in camera.capture_continuous(
+                stream, format='rgb', use_video_port=True, resize=(width, height)):
+                stream.truncate()
+                stream.seek(0)
+                input_tensor = np.frombuffer(stream.getvalue(), dtype=np.uint8)
+                start_ms = time.time()
+                results = engine.classify_with_input_tensor(input_tensor, top_k=1)
+                elapsed_ms = time.time() - start_ms
+                if results:
+                camera.annotate_text = '%s %.2f\n%.2fms' % (
+                    labels[results[0][0]], results[0][1], elapsed_ms * 1000.0)
         finally:
         camera.stop_preview()
 
