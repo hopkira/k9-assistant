@@ -4,7 +4,7 @@ import numpy
 from edgetpu.detection.engine import DetectionEngine
 from edgetpu.utils import dataset_utils
 
- engine = DetectionEngine('/home/pi/k9-assistant/model.tflite')
+engine = DetectionEngine('/home/pi/k9-assistant/model.tflite')
 
 def main()
     with picamera.PiCamera() as camera:
